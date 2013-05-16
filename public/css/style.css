@@ -1,0 +1,6 @@
+body{font:normal 12px/16px Arial, sans-serif}
+#container{width:1000px; margin:0 auto;}
+header{float:left;width:100%}
+nav{float:left;width:100%}
+nav ul li {display:inline}
+section article {float:left; width:80%}

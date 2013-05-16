@@ -1,0 +1,29 @@
+<!DOCTYP HTML>
+<html>
+    <head>
+        <link  href="/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <h1><?php $this->translate('text_header'); ?></h1>
+            </header>
+            <nav>
+               <!--- <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Producten</a></li>
+                </ul>
+               
+               --->
+               
+               <?php $this->navigation()->menu(); ?>
+            </nav>
+            <section>
+                <article>
+                    <?php echo $this->layout()->content; ?>
+                </article>
+            </section>
+        </div>            
+    </body>
+    
+</html>
