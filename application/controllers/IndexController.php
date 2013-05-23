@@ -13,6 +13,13 @@ class IndexController extends Zend_Controller_Action
         // action body
         //var_dump($this->getAllParams());
     }
+    
+    public function apiclientAction()
+    {
+        $client = new Zend_Rest_Client('http://localhost:8010/api/');
+        $response = $client->request();
+      
+    }        
 
 
 }

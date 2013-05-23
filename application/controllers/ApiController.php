@@ -8,40 +8,22 @@ class ApiController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_helper->layout->disableLayout();
     }
-
-    public function indexAction()
+   
+   public function clientAction()
     {
-        $this->getResponse()
-                ->appendBody('indexAction() return');
-    }
-
-    public function getAction()
-    {
-       //$this->getResponse()
-               //->appendBody('getAction() return');
-       $productModel = new Application_Model_Product();
-       $producten= $productModel->getAll();
-       var_dump($producten);
-    }
-    
-    public function postAction()
-    {
-        $this->getResponse()
-                ->appendBody('postAction() return');
-    }
-    
-    public function putAction()
-    {
-        $this->getResponse()
-                ->appendBody('putAction() return');
-    }
-    
-    public function deleteAction()
-    {
-        $this->getResponse()
-                ->appendBody('deleteAction() return');
-    }
- 
+        $client = new Zend_Http_Client();
+        
+        $post = array('field'=> 'value');
+        $client->setUri('http://localhost:8010/Api/Page');   
+        $client->setParameterPost($post);
+        //$client->setParameterGet('1');
+        //$client->setEncType(Zend_Http_Client::ENC_URLENCODED);
+        $response = $client->request('POST');
+        //echo $response->getBody();
+        var_dump($response);
+        
+   }
+           
 
 }
 

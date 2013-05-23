@@ -7,10 +7,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $this->bootstrap('frontController');
         $front = $this->getResource('frontController');
-        $front->registerPlugin(new Syntra_Controller_Plugin_Translate());
-        $front->registerPlugin(new Syntra_Controller_Plugin_Navigation());
-        $front->registerPlugin(new Syntra_Auth_Acl());
-        $front->registerPlugin(new Syntra_Auth_Auth());
+        //$front->registerPlugin(new Syntra_Controller_Plugin_Translate());
+        //$front->registerPlugin(new Syntra_Controller_Plugin_Navigation());
+        //$front->registerPlugin(new Syntra_Auth_Acl());
+        //$front->registerPlugin(new Syntra_Auth_Auth());
     }    
     
     
@@ -31,7 +31,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      */
       
      
-    public function _initRouter(array $option =null)
+   /* public function _initRouter(array $option =null)
     {
        $router = $this->getResource('frontcontroller')->getRouter();
        
@@ -68,6 +68,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
               'action'    => 'index'
             )));
        
+        $router->addRoute('api', 
+            new Zend_Controller_Router_Route('api/:controller/:action', array ( 
+              'module'    => 'Api',
+              'controller'=> 'Page',
+              'action'    => 'index'
+            )));
+       
        
        $router->addRoute('noaccess', 
             new Zend_Controller_Router_Route('noaccess', array ( 
@@ -76,14 +83,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             )));
        
         
-    }
+    }*/
     
     protected function _initRestRoute()
     {
+        // Alle controllers binnen Api modulen , worden hierdoor API REST Controllers
+        // Nodig get / post / put / delete action om dit te laten werken ! 
         $this->bootstrap('frontcontroller');
         $frontController = Zend_Controller_Front::getInstance();
-        $restRoute = new Zend_Rest_Route($frontController);
-        $frontController->getRouter()->addRoute('default',$restRoute);
+        $restRoute = new Zend_Rest_Route($frontController, array(), array('Api'));
+        $frontController->getRouter()->addRoute('rest',$restRoute);
         
     }
     
